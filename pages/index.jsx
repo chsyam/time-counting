@@ -10,7 +10,7 @@ export default function Home({presentTime}) {
 
     useEffect(() => {
             intervalIdRef.current = setInterval(() => {
-                setElapsedTime(Date.now() - startTimeRef.current);
+                setElapsedTime((Date.now()+5.5 * 60 * 60 * 1000) - startTimeRef.current);
             }, 1000);
         return () => {
             clearInterval(intervalIdRef.current);
