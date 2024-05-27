@@ -1,0 +1,24 @@
+.stopwatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 50px;
+    background-color: white;
+    padding: 30px;
+}
+
+.display {
+    font-size: 5rem;
+    font-family: monospace;
+    font-weight: bold;
+    color: hsl(0, 0%, 41%);
+    display: flex;
+}
+
+.items {
+    margin: 20px;
+}
+
+.labels {
+    font-size: 24px;
+}
