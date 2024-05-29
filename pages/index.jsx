@@ -6,27 +6,29 @@ export default function Home({presentTime}) {
     const intervalIdRef = useRef(null);
     const startTimeRef = useRef(presentTime);
 
-    const labels = ["Hours", "Minutes","Seconds"];
+    const labels = ["Days","Hours", "Minutes","Seconds"];
 
     useEffect(() => {
             intervalIdRef.current = setInterval(() => {
-                setElapsedTime((Date.now()+5.5 * 60 * 60 * 1000) - startTimeRef.current);
+                setElapsedTime(Date.now() - startTimeRef.current);
             }, 1000);
         return () => {
             clearInterval(intervalIdRef.current);
         }
     }, []);
 
-    function formatTime(){
+    function formatTime() {
+        let days = Math.floor(elapsedTime / (1000 * 60 * 60 * 24));
         let hours = Math.floor(elapsedTime / (1000 * 60 * 60));
         let minutes = Math.floor(elapsedTime / (1000 * 60) % 60);
         let seconds = Math.floor(elapsedTime / (1000) % 60);
 
-        hours = String(hours).padStart(2, "0");
+        days = String(days).padStart(2, "0");
+        hours = String(hours%24).padStart(2, "0");
         minutes = String(minutes).padStart(2, "0");
         seconds = String(seconds).padStart(2, "0");
 
-        return `${hours}:${minutes}:${seconds}`;
+        return `${days}:${hours}:${minutes}:${seconds}`;
     }
 
     return(
