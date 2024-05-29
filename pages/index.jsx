@@ -9,26 +9,8 @@ export default function Home({presentTime}) {
     const labels = ["Days","Hours", "Minutes","Seconds"];
 
     useEffect(() => {
-        const getISTtime = () => {
-            let now = new Date();
-            let options = {
-                timeZone: 'Asia/Kolkata',
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: false
-            };
-
-            let formatter = new Intl.DateTimeFormat('en-US', options);
-            let formattedDate = formatter.format(now);
-            console.log(formattedDate, new Date(formattedDate).getTime(),Date.now());
-            return new Date(formattedDate).getTime();
-        }
         intervalIdRef.current = setInterval(() => {
-            setElapsedTime(getISTtime() - startTimeRef.current);
+            setElapsedTime((new Date().getTime() + 5.5 * 60 * 60 * 1000) - startTimeRef.current);
         }, 1000);
         return () => {
             clearInterval(intervalIdRef.current);
